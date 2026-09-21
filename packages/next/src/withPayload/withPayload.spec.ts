@@ -45,4 +45,14 @@ describe('withPayload', () => {
       }
     }
   })
+
+  it('should not add a bare package specifier to output file tracing includes', () => {
+    const config = withPayload({
+      outputFileTracingIncludes: {
+        '**/*': ['custom/path/**/*'],
+      },
+    })
+
+    expect(config.outputFileTracingIncludes?.['**/*']).toEqual(['custom/path/**/*'])
+  })
 })
